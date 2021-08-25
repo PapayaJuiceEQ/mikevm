@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mike-vm
+  name: mike-vm
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: mike-vm
+  template:
+    metadata:
+      labels:
+        app: mike-vm
+    spec:
+      containers:
+      - command:
+        - sleep
+        - "99999999"
+        image: <image>
+        imagePullPolicy: Always
+        name: mike-vm
+        resources:
+          limits:
+            cpu: "2"
+            memory: 1500Mi
+          requests:
+            cpu: "2"
+            memory: 1500Mi
